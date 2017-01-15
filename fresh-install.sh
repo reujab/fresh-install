@@ -66,7 +66,7 @@ Section "InputClass"
 EndSection
 EOF
 
-[[ -d .local/share/gnome-shell/extensions ]] || google-chrome https://extensions.gnome.org/extension/{4,307,413,1031}
+[[ -d .local/share/gnome-shell/extensions ]] || google-chrome https://extensions.gnome.org/extension/{4,55,307,413,1031}
 chsh -s /bin/zsh
 dconf write /org/gnome/terminal/legacy/default-show-menubar false
 dconf write /org/gnome/terminal/legacy/keybindings/close-tab "'disabled'"

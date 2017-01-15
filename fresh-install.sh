@@ -68,6 +68,10 @@ EOF
 
 [[ -d .local/share/gnome-shell/extensions ]] || google-chrome https://extensions.gnome.org/extension/{4,55,307,413,1031}
 chsh -s /bin/zsh
+dconf write /org/gnome/shell/extensions/mediaplayer/indicator-position "'center'"
+dconf write /org/gnome/shell/extensions/mediaplayer/status-text "'{trackArtist} — {trackTitle}'"
+dconf write /org/gnome/shell/extensions/mediaplayer/status-type "'cover'"
+dconf write /org/gnome/shell/extensions/mediaplayer/volume true
 dconf write /org/gnome/terminal/legacy/default-show-menubar false
 dconf write /org/gnome/terminal/legacy/keybindings/close-tab "'disabled'"
 dconf write /org/gnome/terminal/legacy/keybindings/close-window "'disabled'"

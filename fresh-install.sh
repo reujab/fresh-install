@@ -17,7 +17,7 @@ sudo dnf install -y http://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonf
 sudo dnf install -y http://folkswithhats.org/repo/$version/RPMS/noarch/folkswithhats-release-1.0.1-1.fc$version.noarch.rpm
 sudo dnf install -y https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
 
-sudo dnf install -y automake cmake fedy fedy-multimedia-codecs ffmpeg gcc-c++ gnome-tweak-tool golang{,-godoc} htop httpie iotop kernel-devel meld nmap nodejs numix-icon-theme-circle python{,3}-devel python3-neovim synaptics vlc wine wireshark-gtk xclip xdotool zsh zsh-syntax-highlighting
+sudo dnf install -y automake cmake fedy fedy-multimedia-codecs ffmpeg gcc-c++ gnome-tweak-tool golang{,-godoc} htop httpie iotop kernel-devel meld nmap nodejs numix-icon-theme-circle python3-neovim synaptics vlc wine wireshark-gtk xclip xdotool zsh zsh-syntax-highlighting
 
 set +e
 
@@ -115,7 +115,7 @@ sudo systemctl stop firewalld
 nvim +PluginInstall +qa -E || true
 zsh -ci clean
 
-.vim/bundle/YouCompleteMe/install.py --{gocode,tern}-completer
+nvim +UpdateRemotePlugins +q
 
 # clean
 rmdir Videos Public Templates || true

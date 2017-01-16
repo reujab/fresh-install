@@ -28,7 +28,7 @@ sudo dnf install -y neovim
 
 set -e
 
-sudo npm install -g electron eslint shiba
+sudo npm install -g electron eslint shiba tern
 
 # configure
 git clone --recursive https://github.com/reujab/dotfiles.git || true

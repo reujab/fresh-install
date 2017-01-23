@@ -35,6 +35,7 @@ git clone --recursive https://github.com/reujab/dotfiles.git || true
 git clone https://github.com/powerline/fonts.git
 mkdir -p .config/autostart
 sudo mkdir -p /root/.config
+GOPATH=/tmp go get github.com/reujab/gse/gse
 
 cat > .config/autostart/bing-background.desktop << EOF
 [Desktop Entry]
@@ -66,7 +67,8 @@ Section "InputClass"
 EndSection
 EOF
 
-[[ -d .local/share/gnome-shell/extensions ]] || google-chrome https://extensions.gnome.org/extension/{4,55,307,413,1031}
+/tmp/bin/gse enable alternate-tab@gnome-shell-extensions.gcampax.github.com apps-menu@gnome-shell-extensions.gcampax.github.com places-menu@gnome-shell-extensions.gcampax.github.com
+/tmp/bin/gse install 4 55 307 413 1031
 chsh -s /bin/zsh
 dconf write /org/gnome/shell/extensions/mediaplayer/indicator-position "'center'"
 dconf write /org/gnome/shell/extensions/mediaplayer/status-text "'{trackArtist} — {trackTitle}'"
@@ -99,7 +101,6 @@ gsettings set org.gnome.desktop.wm.preferences num-workspaces 2
 gsettings set org.gnome.nautilus.icon-view default-zoom-level small
 gsettings set org.gnome.settings-daemon.plugins.xsettings antialiasing rgba
 gsettings set org.gnome.settings-daemon.plugins.xsettings hinting slight
-gsettings set org.gnome.shell enabled-extensions "['alternate-tab@gnome-shell-extensions.gcampax.github.com', 'unitylike-hotkey@webgyerek.net', 'apps-menu@gnome-shell-extensions.gcampax.github.com', 'dash-to-dock@micxgx.gmail.com', 'Panel_Favorites@rmy.pobox.com', 'places-menu@gnome-shell-extensions.gcampax.github.com', 'TopIcons@phocean.net']"
 gsettings set org.gnome.shell favorite-apps "['google-chrome.desktop', 'org.gnome.Terminal.desktop']"
 gsettings set org.gnome.shell.overrides dynamic-workspaces false
 ln -fns ../.vim .config/nvim

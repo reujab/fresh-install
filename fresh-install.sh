@@ -31,11 +31,61 @@ set -e
 sudo npm install -g electron eslint shiba tern
 
 # configure
+GOPATH=/tmp go get github.com/reujab/gse/gse
+chsh -s /bin/zsh
+dconf write /org/gnome/shell/extensions/mediaplayer/indicator-position "'center'"
+dconf write /org/gnome/shell/extensions/mediaplayer/status-text "'{trackArtist} — {trackTitle}'"
+dconf write /org/gnome/shell/extensions/mediaplayer/status-type "'cover'"
+dconf write /org/gnome/shell/extensions/mediaplayer/volume true
+dconf write /org/gnome/terminal/legacy/default-show-menubar false
+dconf write /org/gnome/terminal/legacy/keybindings/close-tab "'disabled'"
+dconf write /org/gnome/terminal/legacy/keybindings/close-window "'disabled'"
+dconf write /org/gnome/terminal/legacy/keybindings/help "'disabled'"
+dconf write /org/gnome/terminal/legacy/keybindings/toggle-menubar "'F10'"
+dconf write /org/gnome/terminal/legacy/keybindings/zoom-out "'disabled'"
+dconf write /org/gnome/terminal/legacy/profiles:/$terminalProfile/background-color "${palette[2]}"
+dconf write /org/gnome/terminal/legacy/profiles:/$terminalProfile/foreground-color "${palette[1]}"
+dconf write /org/gnome/terminal/legacy/profiles:/$terminalProfile/palette "${palette[0]}"
+dconf write /org/gnome/terminal/legacy/profiles:/$terminalProfile/use-theme-colors false
+dconf write /org/gtk/settings/file-chooser/show-hidden true
+git clone --depth 1 https://github.com/robbyrussell/oh-my-zsh.git .oh-my-zsh || true
 git clone --recursive https://github.com/reujab/dotfiles.git || true
 git clone https://github.com/powerline/fonts.git
+gsettings set org.gnome.desktop.input-sources xkb-options "['caps:swapescape', 'terminate:ctrl_alt_bksp']"
+gsettings set org.gnome.desktop.interface clock-format 12h
+gsettings set org.gnome.desktop.interface clock-show-date true
+gsettings set org.gnome.desktop.interface clock-show-seconds true
+gsettings set org.gnome.desktop.interface gtk-key-theme Emacs
+gsettings set org.gnome.desktop.interface gtk-theme Arc
+gsettings set org.gnome.desktop.interface icon-theme Numix-Circle
+gsettings set org.gnome.desktop.interface monospace-font-name "Hack 11"
+gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click true
+gsettings set org.gnome.desktop.wm.preferences button-layout appmenu:minimize,maximize,close
+gsettings set org.gnome.desktop.wm.preferences num-workspaces 2
+gsettings set org.gnome.nautilus.icon-view default-zoom-level small
+gsettings set org.gnome.settings-daemon.plugins.xsettings antialiasing rgba
+gsettings set org.gnome.settings-daemon.plugins.xsettings hinting slight
+gsettings set org.gnome.shell favorite-apps "['google-chrome.desktop', 'org.gnome.Terminal.desktop']"
+gsettings set org.gnome.shell.overrides dynamic-workspaces false
+ln -fns ../.vim .config/nvim
+ln -fs dotfiles/.{{npm,vim,zsh}rc,eslintrc.yaml,gitconfig,vim} .
 mkdir -p .config/autostart
+sudo chsh -s /bin/zsh
+sudo ln -fs ~/.oh-my-zsh ~/dotfiles dotfiles/.{{vim,zsh}rc,vim} /root
 sudo mkdir -p /root/.config
-GOPATH=/tmp go get github.com/reujab/gse/gse
+sudo sed -i s/SELINUX=enforcing/SELINUX=disabled/ /etc/selinux/config
+sudo systemctl disable firewalld
+sudo systemctl enable sshd
+sudo systemctl start sshd
+sudo systemctl stop firewalld
+
+/tmp/bin/gse enable alternate-tab@gnome-shell-extensions.gcampax.github.com apps-menu@gnome-shell-extensions.gcampax.github.com places-menu@gnome-shell-extensions.gcampax.github.com
+/tmp/bin/gse install 4 55 307 413 1031
+fonts/install.sh
+nvim +PluginInstall +qa -E || true
+zsh -ci clean
+
+nvim +UpdateRemotePlugins +q
 
 cat > .config/autostart/bing-background.desktop << EOF
 [Desktop Entry]
@@ -66,57 +116,6 @@ Section "InputClass"
   Option "HorizEdgeScroll" "on"
 EndSection
 EOF
-
-/tmp/bin/gse enable alternate-tab@gnome-shell-extensions.gcampax.github.com apps-menu@gnome-shell-extensions.gcampax.github.com places-menu@gnome-shell-extensions.gcampax.github.com
-/tmp/bin/gse install 4 55 307 413 1031
-chsh -s /bin/zsh
-dconf write /org/gnome/shell/extensions/mediaplayer/indicator-position "'center'"
-dconf write /org/gnome/shell/extensions/mediaplayer/status-text "'{trackArtist} — {trackTitle}'"
-dconf write /org/gnome/shell/extensions/mediaplayer/status-type "'cover'"
-dconf write /org/gnome/shell/extensions/mediaplayer/volume true
-dconf write /org/gnome/terminal/legacy/default-show-menubar false
-dconf write /org/gnome/terminal/legacy/keybindings/close-tab "'disabled'"
-dconf write /org/gnome/terminal/legacy/keybindings/close-window "'disabled'"
-dconf write /org/gnome/terminal/legacy/keybindings/help "'disabled'"
-dconf write /org/gnome/terminal/legacy/keybindings/toggle-menubar "'F10'"
-dconf write /org/gnome/terminal/legacy/keybindings/zoom-out "'disabled'"
-dconf write /org/gnome/terminal/legacy/profiles:/$terminalProfile/background-color "${palette[2]}"
-dconf write /org/gnome/terminal/legacy/profiles:/$terminalProfile/foreground-color "${palette[1]}"
-dconf write /org/gnome/terminal/legacy/profiles:/$terminalProfile/palette "${palette[0]}"
-dconf write /org/gnome/terminal/legacy/profiles:/$terminalProfile/use-theme-colors false
-dconf write /org/gtk/settings/file-chooser/show-hidden true
-fonts/install.sh
-git clone --depth 1 https://github.com/robbyrussell/oh-my-zsh.git .oh-my-zsh || true
-gsettings set org.gnome.desktop.input-sources xkb-options "['caps:swapescape', 'terminate:ctrl_alt_bksp']"
-gsettings set org.gnome.desktop.interface clock-format 12h
-gsettings set org.gnome.desktop.interface clock-show-date true
-gsettings set org.gnome.desktop.interface clock-show-seconds true
-gsettings set org.gnome.desktop.interface gtk-key-theme Emacs
-gsettings set org.gnome.desktop.interface gtk-theme Arc
-gsettings set org.gnome.desktop.interface icon-theme Numix-Circle
-gsettings set org.gnome.desktop.interface monospace-font-name "Hack 11"
-gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click true
-gsettings set org.gnome.desktop.wm.preferences button-layout appmenu:minimize,maximize,close
-gsettings set org.gnome.desktop.wm.preferences num-workspaces 2
-gsettings set org.gnome.nautilus.icon-view default-zoom-level small
-gsettings set org.gnome.settings-daemon.plugins.xsettings antialiasing rgba
-gsettings set org.gnome.settings-daemon.plugins.xsettings hinting slight
-gsettings set org.gnome.shell favorite-apps "['google-chrome.desktop', 'org.gnome.Terminal.desktop']"
-gsettings set org.gnome.shell.overrides dynamic-workspaces false
-ln -fns ../.vim .config/nvim
-ln -fs dotfiles/.{{npm,vim,zsh}rc,eslintrc.yaml,gitconfig,vim} .
-sudo chsh -s /bin/zsh
-sudo ln -fs ~/.oh-my-zsh ~/dotfiles dotfiles/.{{vim,zsh}rc,vim} /root
-sudo sed -i s/SELINUX=enforcing/SELINUX=disabled/ /etc/selinux/config
-sudo systemctl disable firewalld
-sudo systemctl enable sshd
-sudo systemctl start sshd
-sudo systemctl stop firewalld
-
-nvim +PluginInstall +qa -E || true
-zsh -ci clean
-
-nvim +UpdateRemotePlugins +q
 
 # clean
 rmdir Videos Public Templates || true

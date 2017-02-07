@@ -80,7 +80,7 @@ sudo systemctl start sshd
 sudo systemctl stop firewalld
 
 /tmp/bin/gse enable alternate-tab@gnome-shell-extensions.gcampax.github.com apps-menu@gnome-shell-extensions.gcampax.github.com places-menu@gnome-shell-extensions.gcampax.github.com
-/tmp/bin/gse install 4 55 307 413 1031
+/tmp/bin/gse install 4 55 307 1031
 fonts/install.sh
 nvim +PluginInstall +qa -E || true
 zsh -ci clean

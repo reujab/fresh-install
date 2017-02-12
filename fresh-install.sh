@@ -11,17 +11,15 @@ sudo dnf update -y
 sudo dnf copr -y enable dperson/neovim
 sudo dnf copr -y enable region51/chrome-gnome-shell
 sudo dnf copr -y enable rok/cdemu
-sudo dnf copr -y enable tesseract/arc-theme
 sudo dnf install -y http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$version.noarch.rpm
 sudo dnf install -y http://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$version.noarch.rpm
 sudo dnf install -y http://folkswithhats.org/repo/$version/RPMS/noarch/folkswithhats-release-1.0.1-1.fc$version.noarch.rpm
 sudo dnf install -y https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
 
-sudo dnf install -y automake cmake fedy fedy-multimedia-codecs ffmpeg gcc-c++ gnome-tweak-tool golang{,-godoc} htop httpie iotop kernel-devel meld nmap nodejs numix-icon-theme-circle python3-neovim synaptics vlc wine wireshark-gtk xclip xdotool zsh zsh-syntax-highlighting
+sudo dnf install -y arc-theme automake cmake fedy fedy-multimedia-codecs ffmpeg gcc-c++ gnome-tweak-tool golang{,-godoc} htop httpie iotop kernel-devel meld nmap nodejs numix-icon-theme-circle python3-neovim synaptics vlc wine wireshark-gtk xclip xdotool zsh zsh-syntax-highlighting
 
 set +e
 
-sudo dnf install -y arc-theme
 sudo dnf install -y chrome-gnome-shell
 sudo dnf install -y gcdemu
 sudo dnf install -y neovim

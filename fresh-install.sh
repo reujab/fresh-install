@@ -58,7 +58,7 @@ gsettings set org.gnome.desktop.interface clock-show-seconds true
 gsettings set org.gnome.desktop.interface gtk-key-theme Emacs
 gsettings set org.gnome.desktop.interface gtk-theme Arc
 gsettings set org.gnome.desktop.interface icon-theme Numix-Circle
-gsettings set org.gnome.desktop.interface monospace-font-name "Hack 11"
+gsettings set org.gnome.desktop.interface monospace-font-name "DejaVu Sans Mono for Powerline Book 11"
 gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click true
 gsettings set org.gnome.desktop.wm.preferences button-layout appmenu:minimize,maximize,close
 gsettings set org.gnome.desktop.wm.preferences num-workspaces 2

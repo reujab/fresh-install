@@ -67,9 +67,8 @@ gsettings set org.gnome.settings-daemon.plugins.xsettings antialiasing rgba
 gsettings set org.gnome.settings-daemon.plugins.xsettings hinting slight
 gsettings set org.gnome.shell favorite-apps "['google-chrome.desktop', 'org.gnome.Terminal.desktop']"
 gsettings set org.gnome.shell.overrides dynamic-workspaces false
-ln -fns ../.vim .config/nvim
 ln -fs dotfiles/.{{npm,vim,zsh}rc,eslintrc.yaml,gitconfig,vim} .
-mkdir -p .config/autostart
+mkdir -p .config .config/autostart .config/gtk-3.0
 sudo chsh -s /bin/zsh
 sudo ln -fs ~/.oh-my-zsh ~/dotfiles dotfiles/.{{vim,zsh}rc,vim} /root
 sudo mkdir -p /root/.config
@@ -82,6 +81,7 @@ sudo systemctl stop firewalld
 /tmp/bin/gse enable alternate-tab@gnome-shell-extensions.gcampax.github.com apps-menu@gnome-shell-extensions.gcampax.github.com places-menu@gnome-shell-extensions.gcampax.github.com
 /tmp/bin/gse install 4 55 307 1031
 fonts/install.sh
+ln -fns ../.vim .config/nvim
 nvim +PluginInstall +qa -E || true
 zsh -ci clean
 

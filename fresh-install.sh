@@ -1,5 +1,7 @@
 #!/bin/bash -e
 
+cd
+
 IFS=$'\n' palette=($(curl -s https://gist.githubusercontent.com/reujab/656c01678f7229e7d5b6141960649a9d/raw))
 terminalProfile=:b1dcc9dd-5262-4d8d-a863-c897e6d979b9
 version=25

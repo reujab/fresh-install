@@ -3,7 +3,7 @@
 cd
 
 IFS=$'\n' palette=($(curl -s https://gist.githubusercontent.com/reujab/656c01678f7229e7d5b6141960649a9d/raw))
-terminalProfile=:b1dcc9dd-5262-4d8d-a863-c897e6d979b9
+tilixProfile=2b7c4080-0ddd-46c5-8f23-563fd3ba789d
 version=25
 
 # update
@@ -18,7 +18,7 @@ sudo dnf install -y http://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonf
 sudo dnf install -y http://folkswithhats.org/repo/$version/RPMS/noarch/folkswithhats-release-1.0.1-1.fc$version.noarch.rpm
 sudo dnf install -y https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
 
-sudo dnf install -y arc-theme automake cmake fedy fedy-multimedia-codecs ffmpeg gcc-c++ gnome-tweak-tool golang{,-godoc} htop httpie iotop kernel-devel meld nmap nodejs numix-icon-theme-circle pithos python3-neovim redshift-gtk synaptics vlc wine wireshark-gtk xclip xdotool zsh zsh-syntax-highlighting
+sudo dnf install -y arc-theme automake cmake fedy fedy-multimedia-codecs ffmpeg gcc-c++ gnome-tweak-tool golang{,-godoc} htop httpie iotop kernel-devel meld nmap nodejs numix-icon-theme-circle pithos python3-neovim redshift-gtk synaptics tilix vlc wine wireshark-gtk xclip xdotool zsh zsh-syntax-highlighting
 
 set +e
 
@@ -33,20 +33,17 @@ sudo npm install -g electron eslint shiba tern
 # configure
 GOPATH=/tmp go get github.com/reujab/gse/gse
 chsh -s /bin/zsh
+dconf write /com/gexperts/Tilix/control-click-titlebar true
+dconf write /com/gexperts/Tilix/focus-follow-mouse true
+dconf write /com/gexperts/Tilix/profiles/$tilixProfile/background-color "${palette[2]}"
+dconf write /com/gexperts/Tilix/profiles/$tilixProfile/foreground-color "${palette[1]}"
+dconf write /com/gexperts/Tilix/profiles/$tilixProfile/palette "${palette[0]}"
+dconf write /com/gexperts/Tilix/profiles/$tilixProfile/use-theme-colors false
+dconf write /com/gexperts/Tilix/theme-varient "'dark'"
 dconf write /org/gnome/shell/extensions/mediaplayer/indicator-position "'center'"
 dconf write /org/gnome/shell/extensions/mediaplayer/status-text "'{trackArtist} — {trackTitle}'"
 dconf write /org/gnome/shell/extensions/mediaplayer/status-type "'cover'"
 dconf write /org/gnome/shell/extensions/mediaplayer/volume true
-dconf write /org/gnome/terminal/legacy/default-show-menubar false
-dconf write /org/gnome/terminal/legacy/keybindings/close-tab "'disabled'"
-dconf write /org/gnome/terminal/legacy/keybindings/close-window "'disabled'"
-dconf write /org/gnome/terminal/legacy/keybindings/help "'disabled'"
-dconf write /org/gnome/terminal/legacy/keybindings/toggle-menubar "'F10'"
-dconf write /org/gnome/terminal/legacy/keybindings/zoom-out "'disabled'"
-dconf write /org/gnome/terminal/legacy/profiles:/$terminalProfile/background-color "${palette[2]}"
-dconf write /org/gnome/terminal/legacy/profiles:/$terminalProfile/foreground-color "${palette[1]}"
-dconf write /org/gnome/terminal/legacy/profiles:/$terminalProfile/palette "${palette[0]}"
-dconf write /org/gnome/terminal/legacy/profiles:/$terminalProfile/use-theme-colors false
 dconf write /org/gtk/settings/file-chooser/show-hidden true
 git clone --depth 1 https://github.com/robbyrussell/oh-my-zsh.git .oh-my-zsh || true
 git clone --recursive https://github.com/reujab/dotfiles.git || true

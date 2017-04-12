@@ -112,7 +112,6 @@ sudo npm install -g electron eslint shiba tern
 
 # configure
 GOPATH=/tmp go get github.com/reujab/gse/gse
-chsh -s /bin/zsh
 dconf write /com/gexperts/Tilix/control-click-titlebar true
 dconf write /com/gexperts/Tilix/focus-follow-mouse true
 dconf write /com/gexperts/Tilix/profiles/$tilixProfile/background-color "${palette[2]}"
@@ -147,6 +146,7 @@ gsettings set org.gnome.shell.overrides dynamic-workspaces false
 ln -fs dotfiles/.{{npm,vim,zsh}rc,eslintrc.yaml,gitconfig,vim} .
 mkdir -p .config .config/autostart .config/gtk-3.0
 sudo chsh -s /bin/zsh
+sudo chsh -s /bin/zsh chris
 sudo ln -fs ~/.oh-my-zsh ~/dotfiles dotfiles/.{{vim,zsh}rc,vim} /root
 sudo mkdir -p /root/.config
 sudo systemctl enable sshd

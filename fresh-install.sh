@@ -4,30 +4,110 @@ cd
 
 IFS=$'\n' palette=($(curl -s https://gist.githubusercontent.com/reujab/656c01678f7229e7d5b6141960649a9d/raw))
 tilixProfile=2b7c4080-0ddd-46c5-8f23-563fd3ba789d
-version=25
 
-# update
-sudo dnf update -y
+if [[ -f /etc/fedora-release ]]; then
+  version=25
+
+  # fedora update
+  sudo dnf update -y
+
+  # fedora install
+  sudo dnf copr -y enable dperson/neovim
+  sudo dnf copr -y enable region51/chrome-gnome-shell
+  sudo dnf copr -y enable rok/cdemu
+  sudo dnf install -y http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$version.noarch.rpm
+  sudo dnf install -y http://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$version.noarch.rpm
+  sudo dnf install -y http://folkswithhats.org/repo/$version/RPMS/noarch/folkswithhats-release-1.0.1-1.fc$version.noarch.rpm
+  sudo dnf install -y https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
+
+  sudo dnf install -y arc-theme automake cmake fedy fedy-multimedia-codecs ffmpeg gcc-c++ gnome-tweak-tool golang{,-godoc} htop httpie iotop kernel-devel meld nmap nodejs numix-icon-theme-circle pithos python3-neovim redshift-gtk synaptics texlive texlive-{eqparbox,moresize,pgfplots} tilix vlc wine wireshark-gtk xclip xdotool zsh zsh-syntax-highlighting
+
+  set +e
+
+  sudo dnf install -y chrome-gnome-shell
+  sudo dnf install -y gcdemu
+  sudo dnf install -y neovim
+  sudo systemctl disable firewalld
+  sudo systemctl stop firewalld
+
+  set -e
+
+  # fedora configure
+  sudo dnf remove -y evolution gnome-{calendar,clocks,contacts,documents,font-viewer,logs,maps,weather} seahorse setroubleshoot shotwell || true
+  sudo sed -i s/SELINUX=enforcing/SELINUX=disabled/ /etc/selinux/config
+
+  grep defaultyes /etc/dnf/dnf.conf > /dev/null || sudo tee -a /etc/dnf/dnf.conf > /dev/null << EOF
+defaultyes=True
+EOF
+elif [[ -f /etc/arch-release ]]; then
+  # arch update
+  grep '^\[multilib\]$' /etc/pacman.conf > /dev/null || sudo tee -a /etc/pacman.conf > /dev/null << EOF
+[multilib]
+Include = /etc/pacman.d/mirrorlist
+EOF
+
+  sudo pacman --noconfirm -Syu
+
+  # arch install
+  sudo pacman --needed --noconfirm -S base-devel expac git yajl
+
+  git clone https://aur.archlinux.org/cower.git
+
+  cd cower
+
+  makepkg -i --needed --noconfirm --skippgpcheck
+
+  cd
+
+  git clone https://aur.archlinux.org/pacaur.git
+
+  cd pacaur
+
+  makepkg -i --needed --noconfirm
+
+  cd
+
+  # ffmpeg python3-neovim texlive-{eqparbox,moresize,pgfplots} pithos
+  pacaur --needed --noconfirm --noedit -S \
+    arc-gtk-theme \
+    gdm \
+    gnome \
+    gnome-tweak-tool \
+    go \
+    go-tools \
+    google-chrome \
+    htop \
+    httpie \
+    iotop \
+    meld \
+    neovim \
+    networkmanager \
+    nmap \
+    npm \
+    numix-circle-icon-theme-git \
+    openssh \
+    redshift \
+    texlive-bin \
+    tilix-bin \
+    vlc \
+    wine \
+    wireshark-gtk \
+    xclip \
+    xdotool \
+    xf86-input-synaptics \
+    zsh \
+    zsh-syntax-highlighting
+
+  # arch configure
+  sudo systemctl enable NetworkManager
+  sudo systemctl enable gdm
+
+  # arch clean
+  rm -fr pacaur
+  rm -fr cower
+fi
 
 # install
-sudo dnf copr -y enable dperson/neovim
-sudo dnf copr -y enable region51/chrome-gnome-shell
-sudo dnf copr -y enable rok/cdemu
-sudo dnf install -y http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$version.noarch.rpm
-sudo dnf install -y http://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$version.noarch.rpm
-sudo dnf install -y http://folkswithhats.org/repo/$version/RPMS/noarch/folkswithhats-release-1.0.1-1.fc$version.noarch.rpm
-sudo dnf install -y https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
-
-sudo dnf install -y arc-theme automake cmake fedy fedy-multimedia-codecs ffmpeg gcc-c++ gnome-tweak-tool golang{,-godoc} htop httpie iotop kernel-devel meld nmap nodejs numix-icon-theme-circle pithos python3-neovim redshift-gtk synaptics texlive texlive-{eqparbox,moresize,pgfplots} tilix vlc wine wireshark-gtk xclip xdotool zsh zsh-syntax-highlighting
-
-set +e
-
-sudo dnf install -y chrome-gnome-shell
-sudo dnf install -y gcdemu
-sudo dnf install -y neovim
-
-set -e
-
 sudo npm install -g electron eslint shiba tern
 
 # configure
@@ -69,11 +149,8 @@ mkdir -p .config .config/autostart .config/gtk-3.0
 sudo chsh -s /bin/zsh
 sudo ln -fs ~/.oh-my-zsh ~/dotfiles dotfiles/.{{vim,zsh}rc,vim} /root
 sudo mkdir -p /root/.config
-sudo sed -i s/SELINUX=enforcing/SELINUX=disabled/ /etc/selinux/config
-sudo systemctl disable firewalld
 sudo systemctl enable sshd
 sudo systemctl start sshd
-sudo systemctl stop firewalld
 
 /tmp/bin/gse enable alternate-tab@gnome-shell-extensions.gcampax.github.com apps-menu@gnome-shell-extensions.gcampax.github.com places-menu@gnome-shell-extensions.gcampax.github.com
 /tmp/bin/gse install 4 55 307 1031
@@ -99,10 +176,6 @@ file://$HOME/Pictures
 file://$HOME/src Source Code
 EOF
 
-grep defaultyes /etc/dnf/dnf.conf || sudo tee -a /etc/dnf/dnf.conf > /dev/null << EOF
-defaultyes=True
-EOF
-
 sudo tee /etc/X11/xorg.conf.d/00-synaptics.conf > /dev/null << EOF
 Section "InputClass"
   Identifier "synaptics"
@@ -116,5 +189,4 @@ EOF
 
 # clean
 rmdir Videos Public Templates || true
-sudo dnf remove -y evolution gnome-{calendar,clocks,contacts,documents,font-viewer,logs,maps,weather} seahorse setroubleshoot shotwell || true
 sudo rm -fr .bash* .cache .local/share/applications .mozilla /etc/{ba,z}shrc /root/.{*sh*,cache,npm} /tmp/dash-to-dock /usr/share/applications/{lash-panel,wine*,yelp}.desktop fonts

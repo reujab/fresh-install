@@ -76,6 +76,7 @@ EOF
     go \
     go-tools \
     google-chrome \
+    gst-libav \
     htop \
     httpie \
     iotop \

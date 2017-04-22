@@ -109,7 +109,7 @@ EOF
 fi
 
 # install
-sudo npm install -g electron eslint shiba tern
+sudo npm install -g electron eslint gulp-cli shiba tern
 
 # configure
 GOPATH=/tmp go get github.com/reujab/gse/gse

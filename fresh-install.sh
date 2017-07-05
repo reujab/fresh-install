@@ -18,9 +18,8 @@ if [[ -f /etc/fedora-release ]]; then
   sudo dnf install -y http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$version.noarch.rpm
   sudo dnf install -y http://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$version.noarch.rpm
   sudo dnf install -y http://folkswithhats.org/repo/$version/RPMS/noarch/folkswithhats-release-1.0.1-1.fc$version.noarch.rpm
-  sudo dnf install -y https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
 
-  sudo dnf install -y arc-theme automake cmake fedy fedy-multimedia-codecs ffmpeg gcc-c++ gnome-tweak-tool golang{,-godoc} htop httpie iotop kernel-devel meld nmap nodejs numix-icon-theme-circle pithos python3-neovim redshift-gtk synaptics texlive texlive-{eqparbox,moresize,pgfplots} tilix vlc wine wireshark-gtk xclip xdotool zsh zsh-syntax-highlighting
+  sudo dnf install -y arc-theme automake chromium cmake fedy fedy-multimedia-codecs ffmpeg gcc-c++ gnome-tweak-tool golang{,-godoc} htop httpie iotop kernel-devel meld nmap nodejs numix-icon-theme-circle pithos python3-neovim redshift-gtk synaptics texlive texlive-{eqparbox,moresize,pgfplots} tilix vlc wine wireshark-gtk xclip xdotool zsh zsh-syntax-highlighting
 	sudo npm install -g yarn
 
   set +e
@@ -71,12 +70,12 @@ EOF
   # ffmpeg python3-neovim texlive-{eqparbox,moresize,pgfplots} pithos
   pacaur --needed --noconfirm --noedit -S \
     arc-gtk-theme \
+    chromium \
     gdm \
     gnome \
     gnome-tweak-tool \
     go \
     go-tools \
-    google-chrome \
     gst-libav \
     htop \
     httpie \

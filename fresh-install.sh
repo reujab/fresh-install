@@ -67,7 +67,7 @@ EOF
 
 	cd
 
-	# ffmpeg python3-neovim texlive-{eqparbox,moresize,pgfplots} pithos
+	# ffmpeg texlive-{eqparbox,moresize,pgfplots} pithos
 	pacaur --needed --noconfirm --noedit -S \
 		arc-gtk-theme \
 		chromium \
@@ -86,6 +86,7 @@ EOF
 		nmap \
 		numix-circle-icon-theme-git \
 		openssh \
+		python-neovim \
 		redshift \
 		texlive-bin \
 		tilix-bin \

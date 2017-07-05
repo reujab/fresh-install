@@ -6,106 +6,106 @@ IFS=$'\n' palette=($(curl -s https://gist.githubusercontent.com/reujab/656c01678
 tilixProfile=2b7c4080-0ddd-46c5-8f23-563fd3ba789d
 
 if [[ -f /etc/fedora-release ]]; then
-  version=25
+	version=25
 
-  # fedora update
-  sudo dnf update -y
+	# fedora update
+	sudo dnf update -y
 
-  # fedora install
-  sudo dnf copr -y enable dperson/neovim
-  sudo dnf copr -y enable region51/chrome-gnome-shell
-  sudo dnf copr -y enable rok/cdemu
-  sudo dnf install -y http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$version.noarch.rpm
-  sudo dnf install -y http://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$version.noarch.rpm
-  sudo dnf install -y http://folkswithhats.org/repo/$version/RPMS/noarch/folkswithhats-release-1.0.1-1.fc$version.noarch.rpm
+	# fedora install
+	sudo dnf copr -y enable dperson/neovim
+	sudo dnf copr -y enable region51/chrome-gnome-shell
+	sudo dnf copr -y enable rok/cdemu
+	sudo dnf install -y http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$version.noarch.rpm
+	sudo dnf install -y http://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$version.noarch.rpm
+	sudo dnf install -y http://folkswithhats.org/repo/$version/RPMS/noarch/folkswithhats-release-1.0.1-1.fc$version.noarch.rpm
 
-  sudo dnf install -y arc-theme automake chromium cmake fedy fedy-multimedia-codecs ffmpeg gcc-c++ gnome-tweak-tool golang{,-godoc} htop httpie iotop kernel-devel meld nmap nodejs numix-icon-theme-circle pithos python3-neovim redshift-gtk synaptics texlive texlive-{eqparbox,moresize,pgfplots} tilix vlc wine wireshark-gtk xclip xdotool zsh zsh-syntax-highlighting
+	sudo dnf install -y arc-theme automake chromium cmake fedy fedy-multimedia-codecs ffmpeg gcc-c++ gnome-tweak-tool golang{,-godoc} htop httpie iotop kernel-devel meld nmap nodejs numix-icon-theme-circle pithos python3-neovim redshift-gtk synaptics texlive texlive-{eqparbox,moresize,pgfplots} tilix vlc wine wireshark-gtk xclip xdotool zsh zsh-syntax-highlighting
 	sudo npm install -g yarn
 
-  set +e
+	set +e
 
-  sudo dnf install -y chrome-gnome-shell
-  sudo dnf install -y gcdemu
-  sudo dnf install -y neovim
-  sudo systemctl disable firewalld
-  sudo systemctl stop firewalld
+	sudo dnf install -y chrome-gnome-shell
+	sudo dnf install -y gcdemu
+	sudo dnf install -y neovim
+	sudo systemctl disable firewalld
+	sudo systemctl stop firewalld
 
-  set -e
+	set -e
 
-  # fedora configure
-  sudo dnf remove -y evolution gnome-{calendar,clocks,contacts,documents,font-viewer,logs,maps,weather} seahorse setroubleshoot shotwell || true
-  sudo sed -i s/SELINUX=enforcing/SELINUX=disabled/ /etc/selinux/config
+	# fedora configure
+	sudo dnf remove -y evolution gnome-{calendar,clocks,contacts,documents,font-viewer,logs,maps,weather} seahorse setroubleshoot shotwell || true
+	sudo sed -i s/SELINUX=enforcing/SELINUX=disabled/ /etc/selinux/config
 
-  grep defaultyes /etc/dnf/dnf.conf > /dev/null || sudo tee -a /etc/dnf/dnf.conf > /dev/null << EOF
+	grep defaultyes /etc/dnf/dnf.conf > /dev/null || sudo tee -a /etc/dnf/dnf.conf > /dev/null << EOF
 defaultyes=True
 EOF
 elif [[ -f /etc/arch-release ]]; then
-  # arch update
-  grep '^\[multilib\]$' /etc/pacman.conf > /dev/null || sudo tee -a /etc/pacman.conf > /dev/null << EOF
+	# arch update
+	grep '^\[multilib\]$' /etc/pacman.conf > /dev/null || sudo tee -a /etc/pacman.conf > /dev/null << EOF
 [multilib]
 Include = /etc/pacman.d/mirrorlist
 EOF
 
-  sudo pacman --noconfirm -Syu
+	sudo pacman --noconfirm -Syu
 
-  # arch install
-  sudo pacman --needed --noconfirm -S base-devel expac git yajl
+	# arch install
+	sudo pacman --needed --noconfirm -S base-devel expac git yajl
 
-  git clone https://aur.archlinux.org/cower.git
+	git clone https://aur.archlinux.org/cower.git
 
-  cd cower
+	cd cower
 
-  makepkg -i --needed --noconfirm --skippgpcheck
+	makepkg -i --needed --noconfirm --skippgpcheck
 
-  cd
+	cd
 
-  git clone https://aur.archlinux.org/pacaur.git
+	git clone https://aur.archlinux.org/pacaur.git
 
-  cd pacaur
+	cd pacaur
 
-  makepkg -i --needed --noconfirm
+	makepkg -i --needed --noconfirm
 
-  cd
+	cd
 
-  # ffmpeg python3-neovim texlive-{eqparbox,moresize,pgfplots} pithos
-  pacaur --needed --noconfirm --noedit -S \
-    arc-gtk-theme \
-    chromium \
-    gdm \
-    gnome \
-    gnome-tweak-tool \
-    go \
-    go-tools \
-    gst-libav \
-    htop \
-    httpie \
-    iotop \
-    meld \
-    neovim \
-    networkmanager \
-    nmap \
-    numix-circle-icon-theme-git \
-    openssh \
-    redshift \
-    texlive-bin \
-    tilix-bin \
-    vlc \
-    wine \
-    wireshark-gtk \
-    xclip \
-    xdotool \
-    xf86-input-synaptics \
-    yarn \
-    zsh \
-    zsh-syntax-highlighting
+	# ffmpeg python3-neovim texlive-{eqparbox,moresize,pgfplots} pithos
+	pacaur --needed --noconfirm --noedit -S \
+		arc-gtk-theme \
+		chromium \
+		gdm \
+		gnome \
+		gnome-tweak-tool \
+		go \
+		go-tools \
+		gst-libav \
+		htop \
+		httpie \
+		iotop \
+		meld \
+		neovim \
+		networkmanager \
+		nmap \
+		numix-circle-icon-theme-git \
+		openssh \
+		redshift \
+		texlive-bin \
+		tilix-bin \
+		vlc \
+		wine \
+		wireshark-gtk \
+		xclip \
+		xdotool \
+		xf86-input-synaptics \
+		yarn \
+		zsh \
+		zsh-syntax-highlighting
 
-  # arch configure
-  sudo systemctl enable NetworkManager
-  sudo systemctl enable gdm
+	# arch configure
+	sudo systemctl enable NetworkManager
+	sudo systemctl enable gdm
 
-  # arch clean
-  rm -fr pacaur
-  rm -fr cower
+	# arch clean
+	rm -fr pacaur
+	rm -fr cower
 fi
 
 # install
@@ -180,12 +180,12 @@ EOF
 
 sudo tee /etc/X11/xorg.conf.d/00-synaptics.conf > /dev/null << EOF
 Section "InputClass"
-  Identifier "synaptics"
-  Driver "synaptics"
-  MatchIsTouchpad "on"
-  Option "TapButton1" "1"
-  Option "VertEdgeScroll" "on"
-  Option "HorizEdgeScroll" "on"
+	Identifier "synaptics"
+	Driver "synaptics"
+	MatchIsTouchpad "on"
+	Option "TapButton1" "1"
+	Option "VertEdgeScroll" "on"
+	Option "HorizEdgeScroll" "on"
 EndSection
 EOF
 

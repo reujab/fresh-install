@@ -21,6 +21,7 @@ if [[ -f /etc/fedora-release ]]; then
   sudo dnf install -y https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
 
   sudo dnf install -y arc-theme automake cmake fedy fedy-multimedia-codecs ffmpeg gcc-c++ gnome-tweak-tool golang{,-godoc} htop httpie iotop kernel-devel meld nmap nodejs numix-icon-theme-circle pithos python3-neovim redshift-gtk synaptics texlive texlive-{eqparbox,moresize,pgfplots} tilix vlc wine wireshark-gtk xclip xdotool zsh zsh-syntax-highlighting
+	sudo npm install -g yarn
 
   set +e
 
@@ -84,7 +85,6 @@ EOF
     neovim \
     networkmanager \
     nmap \
-    npm \
     numix-circle-icon-theme-git \
     openssh \
     redshift \
@@ -96,6 +96,7 @@ EOF
     xclip \
     xdotool \
     xf86-input-synaptics \
+    yarn \
     zsh \
     zsh-syntax-highlighting
 
@@ -109,7 +110,7 @@ EOF
 fi
 
 # install
-sudo npm install -g electron eslint gulp-cli shiba tern
+sudo yarn global install electron eslint shiba tern
 
 # configure
 GOPATH=/tmp go get github.com/reujab/gse/gse

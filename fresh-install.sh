@@ -157,7 +157,7 @@ sudo systemctl start sshd
 /tmp/bin/gse install 4 55 307 1031
 fonts/install.sh
 ln -fns ../.vim .config/nvim
-nvim +PluginInstall +qa -E || true
+nvim +PlugInstall +qa -E || true
 zsh -ci clean
 
 nvim +UpdateRemotePlugins +q

@@ -175,7 +175,8 @@ file://$HOME/Documents
 file://$HOME/Downloads
 file://$HOME/Music
 file://$HOME/Pictures
-file://$HOME/src Source Code
+file://$HOME/reujab Go
+file://$HOME/js JavaScript
 EOF
 
 sudo tee /etc/X11/xorg.conf.d/00-synaptics.conf > /dev/null << EOF

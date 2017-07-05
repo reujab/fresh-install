@@ -109,7 +109,7 @@ EOF
 fi
 
 # install
-sudo yarn global install electron eslint shiba tern
+sudo yarn global add electron eslint shiba tern
 
 # configure
 GOPATH=/tmp go get github.com/reujab/gse/gse

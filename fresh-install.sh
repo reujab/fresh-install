@@ -143,7 +143,7 @@ gsettings set org.gnome.desktop.wm.preferences num-workspaces 2
 gsettings set org.gnome.nautilus.icon-view default-zoom-level small
 gsettings set org.gnome.settings-daemon.plugins.xsettings antialiasing rgba
 gsettings set org.gnome.settings-daemon.plugins.xsettings hinting slight
-gsettings set org.gnome.shell favorite-apps "['google-chrome.desktop', 'com.gexperts.Tilix.desktop']"
+gsettings set org.gnome.shell favorite-apps "['chromium.desktop', 'com.gexperts.Tilix.desktop']"
 gsettings set org.gnome.shell.overrides dynamic-workspaces false
 ln -fs dotfiles/.{{npm,vim,zsh}rc,eslintrc.yaml,gitconfig,vim} .
 mkdir -p .config .config/autostart .config/gtk-3.0

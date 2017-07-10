@@ -2,111 +2,59 @@
 
 cd
 
-if [[ -f /etc/fedora-release ]]; then
-	version=25
-
-	# fedora update
-	sudo dnf update -y
-
-	# fedora install
-	sudo dnf copr -y enable dperson/neovim
-	sudo dnf copr -y enable region51/chrome-gnome-shell
-	sudo dnf copr -y enable rok/cdemu
-	sudo dnf install -y http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$version.noarch.rpm
-	sudo dnf install -y http://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$version.noarch.rpm
-	sudo dnf install -y http://folkswithhats.org/repo/$version/RPMS/noarch/folkswithhats-release-1.0.1-1.fc$version.noarch.rpm
-
-	sudo dnf install -y arc-theme automake chromium cmake fedy fedy-multimedia-codecs ffmpeg gcc-c++ gnome-tweak-tool golang{,-godoc} htop httpie iotop kernel-devel meld nmap nodejs numix-icon-theme-circle pithos python3-neovim redshift-gtk synaptics texlive texlive-{eqparbox,moresize,pgfplots} tilix vlc wine wireshark-gtk xclip xdotool zsh zsh-syntax-highlighting
-	sudo npm install -g yarn
-
-	set +e
-
-	sudo dnf install -y chrome-gnome-shell
-	sudo dnf install -y gcdemu
-	sudo dnf install -y neovim
-	sudo systemctl disable firewalld
-	sudo systemctl stop firewalld
-
-	set -e
-
-	# fedora configure
-	sudo dnf remove -y evolution gnome-{calendar,clocks,contacts,documents,font-viewer,logs,maps,weather} seahorse setroubleshoot shotwell || true
-	sudo sed -i s/SELINUX=enforcing/SELINUX=disabled/ /etc/selinux/config
-
-	grep defaultyes /etc/dnf/dnf.conf > /dev/null || sudo tee -a /etc/dnf/dnf.conf > /dev/null << EOF
-defaultyes=True
-EOF
-elif [[ -f /etc/arch-release ]]; then
-	# arch update
-	grep '^\[multilib\]$' /etc/pacman.conf > /dev/null || sudo tee -a /etc/pacman.conf > /dev/null << EOF
+# update
+grep '^\[multilib\]$' /etc/pacman.conf > /dev/null || sudo tee -a /etc/pacman.conf > /dev/null << EOF
 [multilib]
 Include = /etc/pacman.d/mirrorlist
 EOF
 
-	sudo pacman --noconfirm -Syu
-
-	# arch install
-	sudo pacman --needed --noconfirm -S base-devel expac git yajl
-
-	git clone https://aur.archlinux.org/cower.git
-
-	cd cower
-
-	makepkg -i --needed --noconfirm --skippgpcheck
-
-	cd
-
-	git clone https://aur.archlinux.org/pacaur.git
-
-	cd pacaur
-
-	makepkg -i --needed --noconfirm
-
-	cd
-
-	# ffmpeg texlive-{eqparbox,moresize,pgfplots} pithos
-	pacaur --needed --noconfirm --noedit -S \
-		arc-gtk-theme \
-		chromium \
-		gdm \
-		gnome \
-		gnome-tweak-tool \
-		go \
-		go-tools \
-		gst-libav \
-		htop \
-		httpie \
-		iotop \
-		meld \
-		neovim \
-		networkmanager \
-		nmap \
-		numix-circle-icon-theme-git \
-		openssh \
-		python-neovim \
-		redshift \
-		texlive-bin \
-		tilix-bin \
-		vlc \
-		wine \
-		wireshark-gtk \
-		xclip \
-		xdotool \
-		xf86-input-synaptics \
-		yarn \
-		zsh \
-		zsh-syntax-highlighting
-
-	# arch configure
-	sudo systemctl enable NetworkManager
-	sudo systemctl enable gdm
-
-	# arch clean
-	rm -fr pacaur
-	rm -fr cower
-fi
+sudo pacman --noconfirm -Syu
 
 # install
+sudo pacman --needed --noconfirm -S base-devel expac git yajl
+git clone https://aur.archlinux.org/cower.git
+cd cower
+makepkg -i --needed --noconfirm --skippgpcheck
+rm -fr cower
+cd
+git clone https://aur.archlinux.org/pacaur.git
+cd pacaur
+makepkg -i --needed --noconfirm
+cd
+rm -fr pacaur
+
+# ffmpeg texlive-{eqparbox,moresize,pgfplots} pithos
+pacaur --needed --noconfirm --noedit -S \
+	arc-gtk-theme \
+	chromium \
+	gdm \
+	gnome \
+	gnome-tweak-tool \
+	go \
+	go-tools \
+	gst-libav \
+	htop \
+	httpie \
+	iotop \
+	meld \
+	neovim \
+	networkmanager \
+	nmap \
+	numix-circle-icon-theme-git \
+	openssh \
+	python-neovim \
+	redshift \
+	texlive-bin \
+	tilix-bin \
+	vlc \
+	wine \
+	wireshark-gtk \
+	xclip \
+	xdotool \
+	xf86-input-synaptics \
+	yarn \
+	zsh \
+	zsh-syntax-highlighting
 sudo yarn global add electron eslint shiba tern
 
 # configure
@@ -144,6 +92,8 @@ sudo chsh -s /bin/zsh
 sudo chsh -s /bin/zsh chris
 sudo ln -fs ~/.oh-my-zsh ~/dotfiles dotfiles/.{{vim,zsh}rc,vim} /root
 sudo mkdir -p /root/.config
+sudo systemctl enable NetworkManager
+sudo systemctl enable gdm
 sudo systemctl enable sshd
 sudo systemctl start sshd
 

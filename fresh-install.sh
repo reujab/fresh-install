@@ -23,10 +23,11 @@ makepkg -i --needed --noconfirm
 cd
 rm -fr pacaur
 
-# ffmpeg texlive-{eqparbox,moresize,pgfplots} pithos
+# ffmpeg texlive-{eqparbox,moresize,pgfplots}
 pacaur --needed --noconfirm --noedit -S \
 	arc-gtk-theme \
 	chromium \
+	fish \
 	gdm \
 	gnome \
 	gnome-tweak-tool \
@@ -42,6 +43,7 @@ pacaur --needed --noconfirm --noedit -S \
 	nmap \
 	numix-circle-icon-theme-git \
 	openssh \
+	pithos \
 	python-neovim \
 	redshift \
 	texlive-bin \
@@ -52,9 +54,7 @@ pacaur --needed --noconfirm --noedit -S \
 	xclip \
 	xdotool \
 	xf86-input-synaptics \
-	yarn \
-	zsh \
-	zsh-syntax-highlighting
+	yarn
 sudo yarn global add electron eslint shiba tern
 
 # configure
@@ -67,7 +67,6 @@ dconf write /org/gnome/shell/extensions/mediaplayer/status-text "'{trackArtist} 
 dconf write /org/gnome/shell/extensions/mediaplayer/status-type "'cover'"
 dconf write /org/gnome/shell/extensions/mediaplayer/volume true
 dconf write /org/gtk/settings/file-chooser/show-hidden true
-git clone --depth 1 https://github.com/robbyrussell/oh-my-zsh.git .oh-my-zsh || true
 git clone --recursive https://github.com/reujab/dotfiles.git || true
 git clone https://github.com/powerline/fonts.git || true
 gsettings set org.gnome.desktop.input-sources xkb-options "['caps:swapescape', 'terminate:ctrl_alt_bksp']"
@@ -86,11 +85,12 @@ gsettings set org.gnome.settings-daemon.plugins.xsettings antialiasing rgba
 gsettings set org.gnome.settings-daemon.plugins.xsettings hinting slight
 gsettings set org.gnome.shell favorite-apps "['chromium.desktop', 'com.gexperts.Tilix.desktop']"
 gsettings set org.gnome.shell.overrides dynamic-workspaces false
-ln -fs dotfiles/.{{vim,zsh}rc,eslintrc.yaml,gitconfig,vim} .
+ln -fs ../dotfiles/fish .config
+ln -fs dotfiles/.{eslintrc.yaml,gitconfig,vim{,rc}} .
 mkdir -p .config .config/autostart .config/gtk-3.0 .config/tilix/schemes
-sudo chsh -s /bin/zsh
-sudo chsh -s /bin/zsh chris
-sudo ln -fs ~/.oh-my-zsh ~/dotfiles dotfiles/.{{vim,zsh}rc,vim} /root
+sudo chsh -s /usr/bin/fish
+sudo chsh -s /usr/bin/fish chris
+sudo ln -fs ~/dotfiles dotfiles/.{vim{,rc}} /root
 sudo mkdir -p /root/.config
 sudo systemctl enable NetworkManager
 sudo systemctl enable gdm
@@ -103,7 +103,6 @@ curl https://gist.githubusercontent.com/reujab/241da27b02fc13be5e18f76ff5270378/
 fonts/install.sh
 ln -fns ../.vim .config/nvim
 nvim +PlugInstall +qa -E || true
-zsh -ci clean
 
 nvim +UpdateRemotePlugins +q
 

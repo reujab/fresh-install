@@ -2,9 +2,6 @@
 
 cd
 
-IFS=$'\n' palette=($(curl -s https://gist.githubusercontent.com/reujab/656c01678f7229e7d5b6141960649a9d/raw))
-tilixProfile=2b7c4080-0ddd-46c5-8f23-563fd3ba789d
-
 if [[ -f /etc/fedora-release ]]; then
 	version=25
 
@@ -116,10 +113,6 @@ sudo yarn global add electron eslint shiba tern
 GOPATH=/tmp go get github.com/reujab/gse/gse
 dconf write /com/gexperts/Tilix/control-click-titlebar true
 dconf write /com/gexperts/Tilix/focus-follow-mouse true
-dconf write /com/gexperts/Tilix/profiles/$tilixProfile/background-color "${palette[2]}"
-dconf write /com/gexperts/Tilix/profiles/$tilixProfile/foreground-color "${palette[1]}"
-dconf write /com/gexperts/Tilix/profiles/$tilixProfile/palette "${palette[0]}"
-dconf write /com/gexperts/Tilix/profiles/$tilixProfile/use-theme-colors false
 dconf write /com/gexperts/Tilix/theme-varient "'dark'"
 dconf write /org/gnome/shell/extensions/mediaplayer/indicator-position "'center'"
 dconf write /org/gnome/shell/extensions/mediaplayer/status-text "'{trackArtist} — {trackTitle}'"
@@ -146,7 +139,7 @@ gsettings set org.gnome.settings-daemon.plugins.xsettings hinting slight
 gsettings set org.gnome.shell favorite-apps "['chromium.desktop', 'com.gexperts.Tilix.desktop']"
 gsettings set org.gnome.shell.overrides dynamic-workspaces false
 ln -fs dotfiles/.{{vim,zsh}rc,eslintrc.yaml,gitconfig,vim} .
-mkdir -p .config .config/autostart .config/gtk-3.0
+mkdir -p .config .config/autostart .config/gtk-3.0 .config/tilix/schemes
 sudo chsh -s /bin/zsh
 sudo chsh -s /bin/zsh chris
 sudo ln -fs ~/.oh-my-zsh ~/dotfiles dotfiles/.{{vim,zsh}rc,vim} /root
@@ -156,6 +149,7 @@ sudo systemctl start sshd
 
 /tmp/bin/gse enable alternate-tab@gnome-shell-extensions.gcampax.github.com apps-menu@gnome-shell-extensions.gcampax.github.com places-menu@gnome-shell-extensions.gcampax.github.com
 /tmp/bin/gse install 4 55 307 1031
+curl https://gist.githubusercontent.com/reujab/241da27b02fc13be5e18f76ff5270378/raw/f86c7a5f0b2a6ccdf913be4a9174ff9871dec263/One%2520Dark.json > "~/.config/tilix/schemes/One Dark.json"
 fonts/install.sh
 ln -fns ../.vim .config/nvim
 nvim +PlugInstall +qa -E || true

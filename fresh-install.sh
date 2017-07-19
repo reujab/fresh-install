@@ -76,6 +76,10 @@ sudo ln -fs ~/dotfiles dotfiles/.vim dotfiles/.vimrc /root
 nvim +PlugInstall +qa -E || true
 nvim +UpdateRemotePlugins +q
 
+# install patched Code New Roman font
+mkdir -p .local/share/fonts
+curl https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/CodeNewRoman/complete/Code%20New%20Roman%20Nerd%20Font%20Complete%20Mono.otf > "$HOME/.local/share/fonts/Code New Roman.otf"
+
 # configure gnome and apps
 dconf write /com/gexperts/Tilix/control-click-titlebar true
 dconf write /com/gexperts/Tilix/focus-follow-mouse true
@@ -92,7 +96,7 @@ gsettings set org.gnome.desktop.interface clock-show-seconds true
 gsettings set org.gnome.desktop.interface gtk-key-theme Emacs
 gsettings set org.gnome.desktop.interface gtk-theme Arc
 gsettings set org.gnome.desktop.interface icon-theme Numix-Circle
-gsettings set org.gnome.desktop.interface monospace-font-name "DejaVu Sans Mono for Powerline Book 11"
+gsettings set org.gnome.desktop.interface monospace-font-name "CodeNewRomanNerdFontCM Nerd Font 11"
 gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click true
 gsettings set org.gnome.desktop.wm.preferences button-layout appmenu:minimize,maximize,close
 gsettings set org.gnome.desktop.wm.preferences num-workspaces 2

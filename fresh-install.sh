@@ -98,7 +98,7 @@ sudo systemctl start sshd
 
 /tmp/bin/gse enable alternate-tab@gnome-shell-extensions.gcampax.github.com apps-menu@gnome-shell-extensions.gcampax.github.com places-menu@gnome-shell-extensions.gcampax.github.com
 /tmp/bin/gse install 4 55 307 1031
-curl https://gist.githubusercontent.com/reujab/241da27b02fc13be5e18f76ff5270378/raw/f86c7a5f0b2a6ccdf913be4a9174ff9871dec263/One%2520Dark.json > "~/.config/tilix/schemes/One Dark.json"
+curl https://gist.githubusercontent.com/reujab/241da27b02fc13be5e18f76ff5270378/raw/f86c7a5f0b2a6ccdf913be4a9174ff9871dec263/One%2520Dark.json > "$HOME/.config/tilix/schemes/One Dark.json"
 fonts/install.sh
 ln -fns ../.vim .config/nvim
 nvim +PlugInstall +qa -E || true

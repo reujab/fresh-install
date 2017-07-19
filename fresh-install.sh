@@ -55,7 +55,7 @@ pacaur --needed --noconfirm --noedit -S \
 	xdotool \
 	xf86-input-synaptics \
 	yarn
-sudo yarn global add electron eslint shiba tern
+sudo yarn global add eslint tern
 
 # configure
 GOPATH=/tmp go get github.com/reujab/gse/gse

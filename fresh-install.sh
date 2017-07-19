@@ -68,7 +68,6 @@ dconf write /org/gnome/shell/extensions/mediaplayer/status-type "'cover'"
 dconf write /org/gnome/shell/extensions/mediaplayer/volume true
 dconf write /org/gtk/settings/file-chooser/show-hidden true
 git clone --recursive https://github.com/reujab/dotfiles.git || true
-git clone https://github.com/powerline/fonts.git || true
 gsettings set org.gnome.desktop.input-sources xkb-options "['caps:swapescape', 'terminate:ctrl_alt_bksp']"
 gsettings set org.gnome.desktop.interface clock-format 12h
 gsettings set org.gnome.desktop.interface clock-show-date true

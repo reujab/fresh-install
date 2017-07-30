@@ -48,6 +48,7 @@ pacaur --needed --noconfirm --noedit -S \
 	pithos \
 	python-neovim \
 	redshift \
+	task \
 	texlive-bin \
 	tilix-bin \
 	vlc \

@@ -46,6 +46,7 @@ pacaur --needed --noconfirm --noedit -S \
 	numix-circle-icon-theme-git \
 	openssh \
 	pithos \
+	python-grip \
 	python-neovim \
 	redshift \
 	task \

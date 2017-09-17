@@ -120,6 +120,7 @@ gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click true
 gsettings set org.gnome.desktop.wm.preferences button-layout appmenu:minimize,maximize,close
 gsettings set org.gnome.desktop.wm.preferences num-workspaces 5
 gsettings set org.gnome.nautilus.icon-view default-zoom-level small
+gsettings set org.gnome.rhythmbox.plugins active-plugins "['audiocd', 'iradio', 'generic-player', 'rb', 'dbus-media-server', 'mpris', 'android', 'power-manager', 'mmkeys']"
 gsettings set org.gnome.settings-daemon.plugins.xsettings antialiasing rgba
 gsettings set org.gnome.settings-daemon.plugins.xsettings hinting slight
 gsettings set org.gnome.shell favorite-apps "['google-chrome.desktop', 'com.gexperts.Tilix.desktop']"

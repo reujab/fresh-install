@@ -86,7 +86,7 @@ nvim +UpdateRemotePlugins +q
 
 # install patched Code New Roman font
 mkdir -p .local/share/fonts
-wget https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/CodeNewRoman/complete/Code%20New%20Roman%20Nerd%20Font%20Complete%20Mono.otf -O "$HOME/.local/share/fonts/Code New Roman.otf"
+wget https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/CodeNewRoman/complete/Code%20New%20Roman%20Nerd%20Font%20Complete%20Mono.otf -O ".local/share/fonts/Code New Roman.otf"
 fc-cache -fv
 
 # configure gnome and apps
@@ -157,7 +157,7 @@ EOF
 
 # install One Dark tilix color scheme
 mkdir -p .config/tilix/schemes
-wget https://gist.githubusercontent.com/reujab/241da27b02fc13be5e18f76ff5270378/raw/f86c7a5f0b2a6ccdf913be4a9174ff9871dec263/One%2520Dark.json -O "$HOME/.config/tilix/schemes/One Dark.json"
+wget https://gist.githubusercontent.com/reujab/241da27b02fc13be5e18f76ff5270378/raw/f86c7a5f0b2a6ccdf913be4a9174ff9871dec263/One%2520Dark.json -O ".config/tilix/schemes/One Dark.json"
 
 # install bronze
 go get github.com/reujab/bronze/...

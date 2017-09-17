@@ -13,17 +13,19 @@ EOF
 sudo pacman --noconfirm -Syu
 
 # install pacaur
-sudo pacman --needed --noconfirm -S base-devel expac git yajl
-git clone https://aur.archlinux.org/cower.git || true
-pushd cower
-PATH=$PATH:/usr/bin/core_perl makepkg -i --needed --noconfirm --skippgpcheck
-rm -fr cower
-popd
-git clone https://aur.archlinux.org/pacaur.git || true
-pushd pacaur
-PATH=$PATH:/usr/bin/core_perl makepkg -i --needed --noconfirm
-popd
-rm -fr pacaur
+if ! which pacaur; then
+	sudo pacman --needed --noconfirm -S base-devel expac git yajl
+	git clone https://aur.archlinux.org/cower.git || true
+	pushd cower
+	PATH=$PATH:/usr/bin/core_perl makepkg -i --needed --noconfirm --skippgpcheck
+	popd
+	rm -fr cower
+	git clone https://aur.archlinux.org/pacaur.git || true
+	pushd pacaur
+	PATH=$PATH:/usr/bin/core_perl makepkg -i --needed --noconfirm
+	popd
+	rm -fr pacaur
+fi
 
 # install all packages
 pacaur --needed --noconfirm --noedit -S \

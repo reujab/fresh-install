@@ -14,14 +14,14 @@ sudo pacman --noconfirm -Syu
 
 # install pacaur
 sudo pacman --needed --noconfirm -S base-devel expac git yajl
-git clone https://aur.archlinux.org/cower.git
+git clone https://aur.archlinux.org/cower.git || true
 pushd cower
-makepkg -i --needed --noconfirm --skippgpcheck
+PATH=$PATH:/usr/bin/core_perl makepkg -i --needed --noconfirm --skippgpcheck
 rm -fr cower
 popd
-git clone https://aur.archlinux.org/pacaur.git
+git clone https://aur.archlinux.org/pacaur.git || true
 pushd pacaur
-makepkg -i --needed --noconfirm
+PATH=$PATH:/usr/bin/core_perl makepkg -i --needed --noconfirm
 popd
 rm -fr pacaur
 
@@ -45,7 +45,6 @@ pacaur --needed --noconfirm --noedit -S \
 	nmap \
 	numix-circle-icon-theme-git \
 	openssh \
-	pithos \
 	python-grip \
 	python-neovim \
 	redshift \

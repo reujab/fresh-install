@@ -41,6 +41,7 @@ pacaur --needed --noconfirm --noedit -S \
 	htop \
 	httpie \
 	iotop \
+	libgit2 \
 	meld \
 	neovim \
 	networkmanager \

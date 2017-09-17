@@ -61,7 +61,9 @@ pacaur --needed --noconfirm --noedit -S \
 	xclip \
 	xdotool \
 	xf86-input-synaptics \
-	yarn
+	yarn \
+	zsh \
+	zsh-syntax-highlighting
 sudo yarn global add eslint tern
 
 # install and enable gnome shell extensions

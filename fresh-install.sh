@@ -31,8 +31,10 @@ fi
 pacaur --needed --noconfirm --noedit -S \
 	arc-gtk-theme \
 	chrome-gnome-shell-git \
+	cups \
 	exa \
 	fontforge \
+	foomatic-db-{engine,gutenprint-ppds} \
 	gdm \
 	gnome \
 	gnome-tweak-tool \
@@ -40,6 +42,7 @@ pacaur --needed --noconfirm --noedit -S \
 	go-tools \
 	google-chrome \
 	gst-libav \
+	gutenprint \
 	htop \
 	httpie \
 	iotop \
@@ -123,6 +126,7 @@ gsettings set org.gnome.shell favorite-apps "['google-chrome.desktop', 'com.gexp
 gsettings set org.gnome.shell.overrides dynamic-workspaces false
 sudo systemctl enable NetworkManager
 sudo systemctl enable gdm
+sudo systemctl enable org.cups.cupsd
 sudo systemctl enable sshd
 sudo systemctl start sshd
 

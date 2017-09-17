@@ -135,7 +135,6 @@ EOF
 # set nautilus bookmarks
 mkdir -p .config/gtk-3.0
 cat > .config/gtk-3.0/bookmarks << EOF
-file://$HOME/Documents
 file://$HOME/Downloads
 file://$HOME/Music
 file://$HOME/Pictures

@@ -159,6 +159,20 @@ EOF
 mkdir -p .config/tilix/schemes
 curl https://gist.githubusercontent.com/reujab/241da27b02fc13be5e18f76ff5270378/raw/f86c7a5f0b2a6ccdf913be4a9174ff9871dec263/One%2520Dark.json > "$HOME/.config/tilix/schemes/One Dark.json"
 
+# install bronze
+go get github.com/reujab/bronze/...
+go get github.com/reujab/RSSd/...
+cat > .config/autostart/RSSd.desktop << EOF
+[Desktop Entry]
+Type=Application
+Name=RSSd
+Exec=bash -c "rm -f .local/share/rssd.sock; go/bin/RSSd"
+EOF
+sudo mv go/bin/packagesd /usr/local/bin
+sudo cp go/src/github.com/reujab/bronze/packagesd/packagesd.service /etc/systemd/system
+sudo systemctl start packagesd
+sudo systemctl enable packagesd
+
 # clean
 rmdir Documents Public Templates Videos || true
 sudo rm -fr .bash* .cache .local/share/applications

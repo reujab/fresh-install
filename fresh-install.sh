@@ -83,6 +83,7 @@ nvim +UpdateRemotePlugins +q
 # install patched Code New Roman font
 mkdir -p .local/share/fonts
 wget https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/CodeNewRoman/complete/Code%20New%20Roman%20Nerd%20Font%20Complete%20Mono.otf -O "$HOME/.local/share/fonts/Code New Roman.otf"
+fc-cache -fv
 
 # configure gnome and apps
 dconf write /com/gexperts/Tilix/control-click-titlebar true

@@ -30,6 +30,7 @@ fi
 # install all packages
 pacaur --needed --noconfirm --noedit -S \
 	arc-gtk-theme \
+	chrome-gnome-shell-git \
 	exa \
 	fontforge \
 	gdm \

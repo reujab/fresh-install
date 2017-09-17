@@ -59,7 +59,7 @@ pacaur --needed --noconfirm --noedit -S \
 	redshift \
 	rhythmbox \
 	task \
-	texlive-bin \
+	texlive-most \
 	tilix-bin \
 	vlc \
 	wget \

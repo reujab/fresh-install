@@ -52,6 +52,7 @@ pacaur --needed --noconfirm --noedit -S \
 	python-grip \
 	python-neovim \
 	redshift \
+	rhythmbox \
 	task \
 	texlive-bin \
 	tilix-bin \

@@ -158,5 +158,5 @@ mkdir -p .config/tilix/schemes
 curl https://gist.githubusercontent.com/reujab/241da27b02fc13be5e18f76ff5270378/raw/f86c7a5f0b2a6ccdf913be4a9174ff9871dec263/One%2520Dark.json > "$HOME/.config/tilix/schemes/One Dark.json"
 
 # clean
-rmdir Videos Public Templates || true
+rmdir Documents Public Templates Videos || true
 sudo rm -fr .bash* .cache .local/share/applications

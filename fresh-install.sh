@@ -28,7 +28,6 @@ rm -fr pacaur
 # install all packages
 pacaur --needed --noconfirm --noedit -S \
 	arc-gtk-theme \
-	fish \
 	gdm \
 	gnome \
 	gnome-tweak-tool \
@@ -70,7 +69,6 @@ GOPATH=/tmp go get github.com/reujab/gse/gse
 git clone --recursive https://github.com/reujab/dotfiles.git || true
 ln -fs dotfiles/.{eslintrc.yaml,gitconfig,vim{,rc}} .
 ln -fns ../.vim .config/nvim
-ln -fs ../dotfiles/fish .config
 sudo ln -fs ~/dotfiles dotfiles/.vim dotfiles/.vimrc /root
 
 # install neovim plugins
@@ -111,9 +109,9 @@ sudo systemctl enable gdm
 sudo systemctl enable sshd
 sudo systemctl start sshd
 
-# change the shell to fish
-sudo chsh -s /usr/bin/fish
-sudo chsh -s /usr/bin/fish "$USER"
+# change the shell to zsh
+sudo chsh -s /usr/bin/zsh
+sudo chsh -s /usr/bin/zsh "$USER"
 
 # run bing-background on login
 mkdir -p .config/autostart

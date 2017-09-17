@@ -55,6 +55,7 @@ pacaur --needed --noconfirm --noedit -S \
 	texlive-bin \
 	tilix-bin \
 	vlc \
+	wget \
 	wine \
 	wireshark-gtk \
 	xclip \
@@ -81,7 +82,7 @@ nvim +UpdateRemotePlugins +q
 
 # install patched Code New Roman font
 mkdir -p .local/share/fonts
-curl https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/CodeNewRoman/complete/Code%20New%20Roman%20Nerd%20Font%20Complete%20Mono.otf > "$HOME/.local/share/fonts/Code New Roman.otf"
+wget https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/CodeNewRoman/complete/Code%20New%20Roman%20Nerd%20Font%20Complete%20Mono.otf -O "$HOME/.local/share/fonts/Code New Roman.otf"
 
 # configure gnome and apps
 dconf write /com/gexperts/Tilix/control-click-titlebar true

@@ -123,7 +123,8 @@ sudo systemctl start sshd
 sudo chsh -s /usr/bin/zsh
 sudo chsh -s /usr/bin/zsh "$USER"
 
-# run bing-background on login
+# install bing-background
+go get github.com/reujab/bing-background
 mkdir -p .config/autostart
 cat > .config/autostart/bing-background.desktop << EOF
 [Desktop Entry]

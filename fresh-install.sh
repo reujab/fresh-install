@@ -77,9 +77,9 @@ GOPATH=/tmp go get github.com/reujab/gse/gse
 
 # install dotfiles
 git clone --recursive https://github.com/reujab/dotfiles.git || true
-ln -fs dotfiles/.{eslintrc.yaml,gitconfig,vim{,rc}} .
+ln -fs dotfiles/.{eslintrc.yaml,gitconfig,vim{,rc},zshrc} .
 ln -fns ../.vim .config/nvim
-sudo ln -fs ~/dotfiles dotfiles/.vim dotfiles/.vimrc /root
+sudo ln -fs ~/.oh-my-zsh ~/dotfiles dotfiles/.{vim{,rc},zshrc} /root
 
 # install neovim plugins
 nvim +PlugInstall +qa -E || true

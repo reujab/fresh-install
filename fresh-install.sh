@@ -108,7 +108,7 @@ gsettings set org.gnome.desktop.interface icon-theme Numix-Circle
 gsettings set org.gnome.desktop.interface monospace-font-name "CodeNewRoman Nerd Font Mono 11"
 gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click true
 gsettings set org.gnome.desktop.wm.preferences button-layout appmenu:minimize,maximize,close
-gsettings set org.gnome.desktop.wm.preferences num-workspaces 2
+gsettings set org.gnome.desktop.wm.preferences num-workspaces 5
 gsettings set org.gnome.nautilus.icon-view default-zoom-level small
 gsettings set org.gnome.settings-daemon.plugins.xsettings antialiasing rgba
 gsettings set org.gnome.settings-daemon.plugins.xsettings hinting slight

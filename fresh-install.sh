@@ -31,6 +31,7 @@ fi
 pacaur --needed --noconfirm --noedit -S \
 	arc-gtk-theme \
 	exa \
+	fontforge \
 	gdm \
 	gnome \
 	gnome-tweak-tool \
@@ -85,8 +86,11 @@ nvim +PlugInstall +qa -E || true
 nvim +UpdateRemotePlugins +q
 
 # install patched Code New Roman font
+git clone https://github.com/ryanoasis/nerd-fonts --depth 1
+nerd-fonts/font-patcher -qcsl "nerd-fonts/src/unpatched-fonts/CodeNewRoman/Code New Roman-Regular.otf"
+rm -fr nerd-fonts
 mkdir -p .local/share/fonts
-wget https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/CodeNewRoman/complete/Code%20New%20Roman%20Nerd%20Font%20Complete%20Mono.otf -O ".local/share/fonts/Code New Roman.otf"
+mv "Code New Roman Nerd Font Complete Mono.otf" ".local/share/fonts/Code New Roman.otf"
 fc-cache -fv
 
 # configure gnome and apps

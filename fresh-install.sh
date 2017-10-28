@@ -31,6 +31,7 @@ fi
 pacaur --needed --noconfirm --noedit -S \
 	arc-gtk-theme \
 	chrome-gnome-shell-git \
+	cloc \
 	cups \
 	exa \
 	fontforge \

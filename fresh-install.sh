@@ -25,9 +25,15 @@ fi
 yay --needed --noconfirm -S \
 	alacritty-git \
 	arc-gtk-theme \
+	audacity \
+	bat \
 	chrome-gnome-shell-git \
+	code \
 	cups \
+	diff-so-fancy \
+	easytag \
 	exa \
+	ffmpeg \
 	firefox \
 	foomatic-db-{engine,gutenprint-ppds} \
 	gdm \
@@ -43,22 +49,32 @@ yay --needed --noconfirm -S \
 	iotop \
 	libgit2 \
 	libgnome-keyring \
+	libreoffice-fresh \
 	meld \
 	neovim \
+	net-tools \
 	networkmanager \
 	nmap \
 	nodejs \
 	npm \
+	ntfs-3g \
 	numix-circle-icon-theme-git \
+	obs-studio \
 	openssh \
+	p7zip \
 	python-grip \
 	python-neovim \
+	ranger \
 	texlive-most \
+	tokei \
+	transmission-gtk \
+	unrar \
 	wget \
 	wine \
 	xclip \
 	xdotool \
 	xf86-input-synaptics \
+	youtube-dl \
 	zsh \
 	zsh-syntax-highlighting
 

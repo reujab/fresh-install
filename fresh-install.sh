@@ -23,6 +23,7 @@ fi
 
 # install all packages
 yay --needed --noconfirm -S \
+	alacritty-git \
 	arc-gtk-theme \
 	chrome-gnome-shell-git \
 	cups \
@@ -53,7 +54,6 @@ yay --needed --noconfirm -S \
 	python-grip \
 	python-neovim \
 	texlive-most \
-	tilix-bin \
 	wget \
 	wine \
 	xclip \
@@ -153,10 +153,6 @@ Section "InputClass"
 	Option "HorizEdgeScroll" "on"
 EndSection
 EOF
-
-# install One Dark tilix color scheme
-mkdir -p .config/tilix/schemes
-wget https://gist.githubusercontent.com/reujab/241da27b02fc13be5e18f76ff5270378/raw/f86c7a5f0b2a6ccdf913be4a9174ff9871dec263/One%2520Dark.json -O ".config/tilix/schemes/One Dark.json"
 
 # install silver
 cargo install silver

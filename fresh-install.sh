@@ -12,23 +12,17 @@ EOF
 # update all packages
 sudo pacman --noconfirm -Syu
 
-# install pacaur
-if ! which pacaur; then
-	sudo pacman --needed --noconfirm -S base-devel expac git yajl
-	git clone https://aur.archlinux.org/cower.git || true
-	pushd cower
-	PATH=$PATH:/usr/bin/core_perl makepkg -i --needed --noconfirm --skippgpcheck
+# install yay
+if ! which yay; then
+	git clone https://aur.archlinux.org/yay.git
+	pushd yay
+	makepkg -i --needed --noconfirm
 	popd
-	rm -fr cower
-	git clone https://aur.archlinux.org/pacaur.git || true
-	pushd pacaur
-	PATH=$PATH:/usr/bin/core_perl makepkg -i --needed --noconfirm
-	popd
-	rm -fr pacaur
+	rm -fr yay
 fi
 
 # install all packages
-pacaur --needed --noconfirm --noedit -S \
+yay --needed --noconfirm -S \
 	arc-gtk-theme \
 	# chrome-gnome-shell-git \
 	cups \

@@ -158,12 +158,8 @@ EOF
 mkdir -p .config/tilix/schemes
 wget https://gist.githubusercontent.com/reujab/241da27b02fc13be5e18f76ff5270378/raw/f86c7a5f0b2a6ccdf913be4a9174ff9871dec263/One%2520Dark.json -O ".config/tilix/schemes/One Dark.json"
 
-# install bronze
-go get github.com/reujab/bronze/...
-sudo mv go/bin/packagesd /usr/local/bin
-sudo cp go/src/github.com/reujab/bronze/packagesd/packagesd.service /etc/systemd/system
-sudo systemctl start packagesd
-sudo systemctl enable packagesd
+# install silver
+cargo install silver
 
 # clean
 rmdir Documents Public Templates Videos || true

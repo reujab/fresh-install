@@ -76,7 +76,8 @@ yay --needed --noconfirm -S \
 	xf86-input-synaptics \
 	youtube-dl \
 	zsh \
-	zsh-syntax-highlighting
+	zsh-syntax-highlighting \
+	zsh-you-should-use
 
 # # install and enable gnome shell extensions
 GOPATH=/tmp go get github.com/reujab/gse/gse

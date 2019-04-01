@@ -44,6 +44,7 @@ yay --needed --noconfirm -S \
 	google-chrome \
 	gst-libav \
 	gutenprint \
+	hexyl \
 	htop \
 	httpie \
 	iotop \

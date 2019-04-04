@@ -69,6 +69,7 @@ yay --needed --noconfirm -S \
 	python-grip \
 	python-neovim \
 	ranger \
+	rutsup \
 	texlive-most \
 	tokei \
 	transmission-gtk \

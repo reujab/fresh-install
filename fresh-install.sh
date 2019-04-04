@@ -9,6 +9,9 @@ grep '^\[multilib\]$' /etc/pacman.conf > /dev/null || sudo tee -a /etc/pacman.co
 Include = /etc/pacman.d/mirrorlist
 EOF
 
+# enable colors in pacman and yay
+sudo sed -i 's/#Color/Color/' /etc/pacman.conf
+
 # update all packages
 sudo pacman --noconfirm -Syu
 

@@ -36,6 +36,7 @@ yay --needed --noconfirm -S \
 	diff-so-fancy \
 	easytag \
 	exa \
+	fd \
 	ffmpeg \
 	firefox \
 	foomatic-db-{engine,gutenprint-ppds} \

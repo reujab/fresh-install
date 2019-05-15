@@ -51,6 +51,7 @@ yay --needed --noconfirm -S \
 	hexyl \
 	htop \
 	httpie \
+	hub \
 	iotop \
 	libgit2 \
 	libgnome-keyring \

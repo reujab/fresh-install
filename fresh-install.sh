@@ -17,6 +17,8 @@ sudo pacman --noconfirm -Syu
 
 # install yay
 if ! which yay; then
+	sudo pacman -S go
+	rm -fr yay
 	git clone https://aur.archlinux.org/yay.git
 	pushd yay
 	makepkg -i --needed --noconfirm
@@ -26,24 +28,24 @@ fi
 
 # install all packages
 yay --needed --noconfirm -S \
-	alacritty-git \
+	alacritty \
 	arc-gtk-theme \
 	audacity \
 	bat \
 	chrome-gnome-shell-git \
 	code \
 	cups \
+	dialog \
 	diff-so-fancy \
-	easytag \
 	exa \
 	fd \
 	ffmpeg \
 	firefox \
+	fontforge \
 	foomatic-db-{engine,gutenprint-ppds} \
 	gdm \
 	gnome \
 	gnome-tweak-tool \
-	go \
 	go-tools \
 	google-chrome \
 	gst-libav \
@@ -63,7 +65,6 @@ yay --needed --noconfirm -S \
 	nmap \
 	nodejs \
 	npm \
-	ntfs-3g \
 	numix-circle-icon-theme-git \
 	obs-studio \
 	openssh \
@@ -71,29 +72,27 @@ yay --needed --noconfirm -S \
 	python-grip \
 	python-neovim \
 	ranger \
-	rutsup \
+	rustup \
 	texlive-most \
 	tokei \
 	transmission-gtk \
 	unrar \
+	vte-common \
 	wget \
 	wine \
+	wpa_supplicant \
 	xclip \
 	xdotool \
 	xf86-input-synaptics \
 	youtube-dl \
 	zsh \
 	zsh-syntax-highlighting
-
-# # install and enable gnome shell extensions
-GOPATH=/tmp go get github.com/reujab/gse/gse
-# Frippery Panel Favorites, Media player indicator, Dash to Dock, TopIcons Plus
-/tmp/bin/gse install 4 55 307 1031
-/tmp/bin/gse enable alternate-tab@gnome-shell-extensions.gcampax.github.com apps-menu@gnome-shell-extensions.gcampax.github.com places-menu@gnome-shell-extensions.gcampax.github.com
+# ntfs-3g
 
 # install dotfiles
-git clone --recursive https://github.com/reujab/dotfiles.git || true
-ln -fs dotfiles/.{eslintrc.yaml,gitconfig,vim{,rc},zshrc} .
+git clone https://github.com/reujab/dotfiles.git || true
+git clone https://github.com/ohmyzsh/ohmyzsh .oh-my-zsh || true
+ln -fs dotfiles/.{alacritty.yml,eslintrc.yaml,gitconfig,vim{,rc},zshrc} .
 ln -fns ../.vim .config/nvim
 sudo ln -fs ~/.oh-my-zsh ~/dotfiles dotfiles/.{vim{,rc},zshrc} /root
 
@@ -102,12 +101,14 @@ nvim +PlugInstall +qa -E || true
 nvim +UpdateRemotePlugins +q
 
 # install patched Code New Roman font
-git clone https://github.com/ryanoasis/nerd-fonts --depth 1
-nerd-fonts/font-patcher -qcsl "nerd-fonts/src/unpatched-fonts/CodeNewRoman/Code New Roman-Regular.otf"
-rm -fr nerd-fonts
-mkdir -p .local/share/fonts
-mv "Code New Roman Nerd Font Complete Mono.otf" ".local/share/fonts/Code New Roman.otf"
-fc-cache -fv
+if [[ ! -f "$HOME/.local/share/fonts/Code New Roman.otf" ]]; then
+	git clone https://github.com/ryanoasis/nerd-fonts --depth 1
+	nerd-fonts/font-patcher -qcsl "nerd-fonts/src/unpatched-fonts/CodeNewRoman/Regular/Code New Roman-Regular.otf"
+	rm -fr nerd-fonts
+	mkdir -p .local/share/fonts
+	mv "Code New Roman Nerd Font Complete Mono.otf" ".local/share/fonts/Code New Roman.otf"
+	fc-cache -fv
+fi
 
 # configure gnome and apps
 dconf write /com/gexperts/Tilix/control-click-titlebar true
@@ -120,6 +121,12 @@ dconf write /org/gnome/shell/extensions/mediaplayer/status-text "'{trackArtist} 
 dconf write /org/gnome/shell/extensions/mediaplayer/status-type "'cover'"
 dconf write /org/gnome/shell/extensions/mediaplayer/volume true
 dconf write /org/gtk/settings/file-chooser/show-hidden true
+dconf write /org/gnome/shell/extensions/dash-to-dock/dock-fixed false
+dconf write /org/gnome/shell/extensions/dash-to-dock/multi-monitor true
+dconf write /org/gnome/shell/extensions/dash-to-dock/show-trash true
+dconf write /org/gnome/shell/extensions/dash-to-dock/scroll-action "'switch-workspace'"
+dconf write /org/gnome/desktop/wm/preferences/num-workspaces 2
+dconf write /org/gnome/shell/extensions/multi-monitors-add-on/transfer-indicators "{'panel-favorites': 0}"
 gsettings set org.gnome.desktop.input-sources xkb-options "['caps:swapescape', 'terminate:ctrl_alt_bksp']"
 gsettings set org.gnome.desktop.interface clock-format 12h
 gsettings set org.gnome.desktop.interface clock-show-date true
@@ -134,7 +141,7 @@ gsettings set org.gnome.desktop.wm.preferences num-workspaces 5
 gsettings set org.gnome.nautilus.icon-view default-zoom-level small
 gsettings set org.gnome.settings-daemon.plugins.xsettings antialiasing rgba
 gsettings set org.gnome.settings-daemon.plugins.xsettings hinting slight
-gsettings set org.gnome.shell favorite-apps "['google-chrome.desktop', 'com.gexperts.Tilix.desktop']"
+gsettings set org.gnome.shell favorite-apps "['google-chrome.desktop', 'Alacritty.desktop']"
 gsettings set org.gnome.shell.overrides dynamic-workspaces false
 sudo systemctl enable NetworkManager
 sudo systemctl enable gdm
@@ -177,8 +184,14 @@ Section "InputClass"
 EndSection
 EOF
 
+# configure rustup
+rustup default nightly
+
 # install silver
 cargo install silver
+
+# install grub theme
+curl https://raw.githubusercontent.com/shvchk/fallout-grub-theme/master/install.sh | bash
 
 # clean
 rmdir Documents Public Templates Videos || true

@@ -89,7 +89,6 @@ yay --needed --noconfirm -S \
 	youtube-dl \
 	zsh \
 	zsh-syntax-highlighting
-# ntfs-3g
 
 sudo npm i -g expo-cli
 

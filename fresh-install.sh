@@ -114,9 +114,6 @@ if [[ ! -f "$HOME/.local/share/fonts/Code New Roman.otf" ]]; then
 fi
 
 # configure gnome and apps
-dconf write /com/gexperts/Tilix/control-click-titlebar true
-dconf write /com/gexperts/Tilix/focus-follow-mouse true
-dconf write /com/gexperts/Tilix/theme-varient "'dark'"
 dconf write /org/gnome/shell/extensions/dash-to-dock/extend-height true
 dconf write /org/gnome/shell/extensions/dash-to-dock/scroll-action "'cycle-windows'"
 dconf write /org/gnome/shell/extensions/mediaplayer/indicator-position "'center'"

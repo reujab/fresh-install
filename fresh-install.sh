@@ -192,7 +192,3 @@ cargo install silver
 
 # install grub theme
 curl https://raw.githubusercontent.com/shvchk/fallout-grub-theme/master/install.sh | bash
-
-# clean
-rmdir Documents Public Templates Videos || true
-sudo rm -fr .bash* .cache .local/share/applications

@@ -29,7 +29,6 @@ fi
 # install all packages
 yay --needed --noconfirm -S \
 	alacritty \
-	arc-gtk-theme \
 	audacity \
 	bat \
 	chrome-gnome-shell-git \
@@ -59,6 +58,7 @@ yay --needed --noconfirm -S \
 	libgnome-keyring \
 	libreoffice-fresh \
 	meld \
+	minecraft-launcher \
 	neovim \
 	net-tools \
 	networkmanager \
@@ -68,6 +68,7 @@ yay --needed --noconfirm -S \
 	numix-circle-icon-theme-git \
 	obs-studio \
 	openssh \
+	os-prober \
 	p7zip \
 	python-grip \
 	python-neovim \
@@ -84,10 +85,13 @@ yay --needed --noconfirm -S \
 	xclip \
 	xdotool \
 	xf86-input-synaptics \
+	xorg-xwininfo \
 	youtube-dl \
 	zsh \
 	zsh-syntax-highlighting
 # ntfs-3g
+
+sudo npm i -g expo-cli
 
 # install dotfiles
 git clone https://github.com/reujab/dotfiles.git || true

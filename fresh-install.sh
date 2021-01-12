@@ -62,6 +62,7 @@ yay --needed --noconfirm -S \
 	nmap \
 	nodejs \
 	npm \
+	ntfs-3g \
 	numix-circle-icon-theme-git \
 	obs-studio \
 	openssh \
@@ -71,6 +72,7 @@ yay --needed --noconfirm -S \
 	python-neovim \
 	ranger \
 	rustup \
+	steam \
 	tokei \
 	transmission-gtk \
 	unrar \

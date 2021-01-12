@@ -161,7 +161,7 @@ gsettings set org.gnome.shell favorite-apps "['google-chrome.desktop', 'Alacritt
 gsettings set org.gnome.shell.overrides dynamic-workspaces false
 sudo systemctl enable NetworkManager
 sudo systemctl enable gdm
-sudo systemctl enable org.cups.cupsd
+sudo systemctl enable cups
 sudo systemctl enable sshd
 sudo systemctl start sshd
 

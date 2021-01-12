@@ -34,13 +34,10 @@ yay --needed --noconfirm -S \
 	chrome-gnome-shell-git \
 	code \
 	cups \
-	dialog \
 	diff-so-fancy \
 	exa \
-	fd \
 	ffmpeg \
 	firefox \
-	fontforge \
 	foomatic-db-{engine,gutenprint-ppds} \
 	gdm \
 	gnome \
@@ -74,14 +71,12 @@ yay --needed --noconfirm -S \
 	python-neovim \
 	ranger \
 	rustup \
-	texlive-most \
 	tokei \
 	transmission-gtk \
 	unrar \
 	vte-common \
 	wget \
 	wine \
-	wpa_supplicant \
 	xclip \
 	xdotool \
 	xf86-input-synaptics \

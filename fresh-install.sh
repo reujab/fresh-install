@@ -17,7 +17,7 @@ sudo pacman --noconfirm -Syu
 
 # install yay
 if ! which yay; then
-	sudo pacman --noconfirm -S binutils fakeroot go
+	sudo pacman --needed --noconfirm -S binutils fakeroot go git
 	rm -fr yay
 	git clone https://aur.archlinux.org/yay.git
 	pushd yay

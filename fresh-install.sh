@@ -30,17 +30,33 @@ fi
 yay --needed --noconfirm -S \
 	alacritty \
 	audacity \
+	baobab \
 	bat \
 	chrome-gnome-shell-git \
 	code \
 	cups \
 	diff-so-fancy \
+	eog \
+	evince \
 	exa \
 	ffmpeg \
+	file-roller \
 	firefox \
 	foomatic-db-{engine,gutenprint-ppds} \
 	gdm \
-	gnome \
+	gdm \
+	gedit \
+	gnome-backgrounds \
+	gnome-calculator \
+	gnome-control-center \
+	gnome-keyring \
+	gnome-logs \
+	gnome-menus \
+	gnome-screenshot \
+	gnome-session \
+	gnome-shell \
+	gnome-shell-extensions \
+	gnome-system-monitor \
 	gnome-tweak-tool \
 	go-tools \
 	google-chrome \
@@ -56,8 +72,10 @@ yay --needed --noconfirm -S \
 	libreoffice-fresh \
 	meld \
 	minecraft-launcher \
+	nautilus \
 	neovim \
 	net-tools \
+	networkmanager \
 	networkmanager \
 	nmap \
 	nodejs \
@@ -74,6 +92,7 @@ yay --needed --noconfirm -S \
 	rustup \
 	steam \
 	tokei \
+	totem \
 	transmission-gtk \
 	unrar \
 	vte-common \

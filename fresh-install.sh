@@ -13,7 +13,7 @@ EOF
 sudo sed -i 's/#Color/Color/' /etc/pacman.conf
 
 # update all packages
-sudo pacman --noconfirm -Syyu
+sudo pacman --noconfirm -Syu
 
 # install yay
 if ! which yay; then

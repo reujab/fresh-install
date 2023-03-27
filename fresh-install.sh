@@ -43,6 +43,7 @@ yay --needed --noconfirm -S \
 	foomatic-db-{engine,gutenprint-ppds} \
 	gdm \
 	gedit \
+	git-delta \
 	gnome-backgrounds \
 	gnome-browser-connector \
 	gnome-calculator \

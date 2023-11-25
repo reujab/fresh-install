@@ -17,7 +17,7 @@ sudo pacman --noconfirm -Syu
 
 # install yay
 if ! which yay; then
-	sudo pacman --needed --noconfirm -S binutils fakeroot go git
+	sudo pacman --needed --noconfirm -S base-devel go git
 	rm -rf yay
 	git clone https://aur.archlinux.org/yay.git
 	pushd yay
@@ -29,7 +29,6 @@ fi
 # install all packages
 yay --needed --noconfirm -S \
 	arc-gtk-theme \
-	balena-etcher \
 	baobab \
 	bat \
 	code \
@@ -66,11 +65,11 @@ yay --needed --noconfirm -S \
 	libgit2 \
 	libgnome-keyring \
 	meld \
-	minecraft-launcher \
 	nautilus \
 	neovim \
 	net-tools \
 	networkmanager \
+	noto-fonts-emoji \
 	npm \
 	ntfs-3g \
 	numix-circle-icon-theme-git \
@@ -79,7 +78,6 @@ yay --needed --noconfirm -S \
 	p7zip \
 	python-neovim \
 	rustup \
-	steam \
 	tokei \
 	totem \
 	transmission-gtk \
@@ -129,7 +127,6 @@ gsettings set org.gnome.desktop.wm.preferences button-layout appmenu:minimize,ma
 gsettings set org.gnome.desktop.wm.preferences num-workspaces 5
 gsettings set org.gnome.nautilus.icon-view default-zoom-level small
 gsettings set org.gnome.shell favorite-apps "['google-chrome.desktop', 'org.gnome.Terminal.desktop', 'code-oss.desktop']"
-gsettings set org.gnome.shell.overrides dynamic-workspaces false
 sudo systemctl enable NetworkManager
 sudo systemctl enable gdm
 sudo systemctl enable cups
